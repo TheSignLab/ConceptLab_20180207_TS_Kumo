@@ -41,7 +41,7 @@ var c = new Crawler({
 
                 var item = $(".main-results div p a")[i];
                 list.push($(item).attr("href"));
-
+ 
             }
 
             
