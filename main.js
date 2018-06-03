@@ -1,3 +1,39 @@
+/* -----------------------------------------------------------
+  |                                                           |
+  |   Kumo Crawler for Web Scrapping                          |
+  |                                                           |
+  |   Author      : Jorge Luis Mayorga Taborda                |
+  |   Update      : 3/06/2018                                 |
+  |                                                           |
+  |   Description : Web Crawler using Cheerio and Node.js     |
+  |                 for web data recovery and automation      |
+  |                 search in web.                            |
+  |                                                           |
+   ----------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
 var Crawler = require("crawler");
 var fs = require('fs');
 var k = 0;
@@ -90,3 +126,4 @@ function setQueueNext(url){
 }
 
 c.queue(url);
+*/
