@@ -1,16 +1,50 @@
-/* -----------------------------------------------------------
-  |                                                           |
-  |   Kumo Crawler for Web Scrapping                          |
-  |                                                           |
-  |   Author      : Jorge Luis Mayorga Taborda                |
-  |   Update      : 3/06/2018                                 |
-  |                                                           |
-  |   Description : Web Crawler using Cheerio and Node.js     |
-  |                 for web data recovery and automation      |
-  |                 search in web.                            |
-  |                                                           |
-   ----------------------------------------------------------- */
+/*   -----------------------------------------------------------
+    |                                                           |
+    |   Kumo Crawler for Web Scrapping                          |
+    |                                                           |
+    |   Author      : Jorge Luis Mayorga Taborda                |
+    |   Update      : 3/06/2018                                 |
+    |                                                           |
+    |   Description : Web Crawler using Cheerio and Node.js     |
+    |                 for web data recovery and automation      |
+    |                 search in web.                            |
+    |                                                           |
+     ----------------------------------------------------------- */
 
+    
+
+    // Imports/Require Dependecies
+
+        const Kumo = require('./lib/kumo.js');//Kumo Class
+
+        var url       = './data/url.json'; // URL to Crawled
+        var employees = './data/employees.json'; // Employees to Crawled
+        var config    = './config/config.json'; // Settings as $('.class child')
+        var callback  = './config/settings.json'; // PostProcessing Callbacks
+
+        var mainURL = "http://busquedas.dafp.gov.co/search?btnG=Buscar&client=Hojas_de_vida&output=xml_no_dtd&proxystylesheet=Hojas_de_vida&sort=date:D:L:d1&oe=UTF-8&ie=UTF-8&ud=1&getfields=*&wc=200&wc_mc=1&lr=lang_es&exclude_apps=1&site=Hojas_de_Vida&filter=0&entqr=3&ulang=es&ip=190.147.24.37&access=p&entqrm=0&q=bogota+inmeta:DPTO%3DBogot%C3%A1%2520D%252EC&dnavs=inmeta:DPTO%3DBogot%C3%A1%2520D%252EC&start=0";
+        
+    // Init Kumo Object
+    
+        let kumo = new Kumo();
+
+        kumo.setURL(url);
+        kumo.setConfig(config);
+        kumo.setCallback(callback);
+
+        kumo.welcome(mainURL);
+
+        
+
+        
+
+        
+
+        
+        
+        
+
+    
 
 
 
