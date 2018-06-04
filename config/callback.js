@@ -15,10 +15,7 @@ module.exports = {
 
         $(".main-results a").each(function (i, elem) {
             href = $(this).attr("href");
-            if (href) {
                 hrefs.push(href);
-            }
-
         });
         
         
