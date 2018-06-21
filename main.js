@@ -25,6 +25,35 @@ var userCodes = ["M605691-0004-4/view",
 
 
 
+// ----------------------------------------------- //
+
+const fs = require('fs');
+const cw = require('crawler');
+const seeds = require('./seeds.json');
+
+const base_url = "http://www.sigep.gov.co/hdv/-/directorio/";
+const json_file = "exports/persons.json";
+
+var state = [];
+// ----------------------------------------------- //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -32,10 +61,6 @@ var userCodes = ["M605691-0004-4/view",
 
 // ----------------------------------------------- //
 function getUserCodeByKeyword(keyword, callback_p) {
-
-
-
-
     c.queue([{
         uri: init_uri,
         callback: function (error, res, done) {
@@ -48,12 +73,10 @@ function getUserCodeByKeyword(keyword, callback_p) {
                     userCodes.push(_href);
                 });
                 callback_p(userCodes);
-
             }
             done();
         }
     }]);
-
 }
 
 function getUserDataByUserCode(usercode, callback) {
@@ -150,17 +173,7 @@ function save_db() {
 
 
 
-// ----------------------------------------------- //
-var mongo = require('mongodb');
-const fs = require('fs');
-const cw = require('crawler');
-const seeds = require('./seeds.json');
 
-const base_url = "http://www.sigep.gov.co/hdv/-/directorio/";
-const json_file = "exports/persons.json";
-
-var state = [];
-// ----------------------------------------------- //
 
 
 // ----------------------------------------------- //
@@ -186,9 +199,22 @@ var c = new cw({
 
 
 
-console.log('\033[2J');
-console.log("Crawler Init ");
-console.log(" ");
+
+
+
+
+
+
+
+// ----------------------------------------------- //
+    console.log('\033[2J');
+    console.log("Crawler Init ");
+    console.log(" ");
+// ----------------------------------------------- //
+
+
+
+
 
 // Loop por cada Palabra clave (Keyword) //
 for (var kSeed = 0; kSeed < seeds.length; kSeed++) {
@@ -196,37 +222,41 @@ for (var kSeed = 0; kSeed < seeds.length; kSeed++) {
     // Funcion ejecutada por cada Keyword , Retorna lista de Usuarios por Keyword //
     getUserCodeByKeyword(seeds[kSeed], function (userCodeList) {
 
-            // Loop por toda la lista de Ususario para esta Keyword //
-            for (var kUserCode = 0; kUserCode < userCodeList.length; kUserCode++) {
+        // Loop por toda la lista de Ususario para esta Keyword //
+        for (var kUserCode = 0; kUserCode < userCodeList.length; kUserCode++) {
+            
+            // Actua URL
+            var _uri = base_url + userCodeList[kUserCode];
 
-                // Indicador de estado //
-                console.log("Search in " + seeds[kSeed] + " ---> UserCode : " + userCodeList[kUserCode]);
+            // Indicador de estado //
+            console.log("Search in " + seeds[kSeed] + " ---> UserCode : " + userCodeList[kUserCode]);
 
-                var _uri = base_url + userCodeList[kUserCode];
-
-                if ((kUserCode == (userCodeList.length - 1))) {
-                    var _callback = function (err, res, done) {
-                        obj = getInfo(res);
-                        db.push(obj);
-                        done();
-                        save_db();
-                    }
-                    var options = [{
-                        uri: _uri,
-                        callback: function (error, res, done) {
-                            if (error) {
-                                console.log(error);
-                            } else {
-                                _callback(error, res, done);
-                            }
-                            done();
-                        }
-                }];
-                    c.queue(options);
-                } else {
-                    c.queue(_uri;
-                    }
+            if ((kUserCode == (userCodeList.length - 1))) {
+                var _callback = function (err, res, done) {
+                    obj = getInfo(res);
+                    db.push(obj);
+                    done();
                 }
-            });
-
+                var options = [{
+                    uri: _uri,
+                    callback: function (error, res, done) {
+                        if (error) {
+                            console.log(error);
+                        } else {
+                            _callback(error, res, done);
+                        }
+                        done();
+                    }
+                }];
+                c.queue(options);
+            } else {
+                c.queue(_uri);
+            }
+        }
+    });
+    
+    if(kSeed == (seeds.length - 1)){
+        
     }
+
+}
