@@ -61,8 +61,9 @@ for (var kSeed = 0; kSeed < seeds.length; kSeed++) {
 
     // Normal Keywords
     if (kSeed < (seeds.length - 1)) {
-        console.log("Keyword : " + thisKeyword)
-        keywordsCallback(URL_Init, thisKeyword, function (userKeyword, userCodes, next) {
+        console.log("Keyword : " + thisKeyword);
+        var URL = "http://busquedas.dafp.gov.co/search?q="+thisKeyword+"&btnG=Buscar&client=Hojas_de_vida&output=xml_no_dtd&proxystylesheet=Hojas_de_vida&sort=date%3AD%3AL%3Ad1&oe=UTF-8&ie=UTF-8&ud=1&getfields=*&wc=200&wc_mc=1&lr=lang_es&exclude_apps=1&site=Hojas_de_Vida&getfields=*&filter=0&lr=lang_es&entqr=1"
+        keywordsCallback(URL, thisKeyword, function (userKeyword, userCodes, next) {
             processingPage(userKeyword, userCodes, next);
         });
     } else {
@@ -114,7 +115,7 @@ function processingPage(userKeyword, userCodes, next) {
                     processingPage(userKeyword, userCodes, next);
                 });
                 var nPage = next.replace("http://busquedas.dafp.gov.co/search?q=cti&btnG=Buscar&client=Hojas_de_vida&output=xml_no_dtd&proxystylesheet=Hojas_de_vida&sort=date:D:L:d1&oe=UTF-8&ie=UTF-8&ud=1&getfields=*&wc=200&wc_mc=1&lr=lang_es&exclude_apps=1&site=Hojas_de_Vida&filter=0&entqr=1&ulang=&ip=190.147.24.37&access=p&entqrm=0&start=", "");
-                console.log(nPage)
+                
             } else {
                 run_usercrawler();
             }
