@@ -1,0 +1,12 @@
+{"name": "Sigep-Crawler",
+"version": "v0.0.0",
+"description": "Crawler para obtener info de los empleados y entidades publicas",
+"url_base_search" : "http://busquedas.dafp.gov.co/",
+"url_key_search" : "{{thisKeyword}}",
+"url_query_search" : "search?q={{thisKeyword}}&btnG=Buscar&client=Hojas_de_vida&output=xml_no_dtd&proxystylesheet=Hojas_de_vida&sort=date%3AD%3AL%3Ad1&oe=UTF-8&ie=UTF-8&ud=1&getfields=*&wc=200&wc_mc=1&lr=lang_es&exclude_apps=1&site=Hojas_de_Vida&getfields=*&filter=0&lr=lang_es&entqr=1",
+"url_base_code": "http://www.sigep.gov.co/hdv/-/directorio/",
+"url_query_code" : "{{thisCode}}/view",
+ "url_key_code" : "{{thisCode}}",
+"file_keywords": "./database/keywords.json",
+"file_codes": "./database/codes.json",
+"file_users": "./database/users.json"}

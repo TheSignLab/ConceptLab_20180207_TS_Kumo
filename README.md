@@ -1,2 +1,2 @@
-# ConceptLab_20180207_TS_Kumo
-NodeJS Crawler for Data Stantarization in Web
+# crawler-sigep
+Crawler/Bot para recuperar la información del SIGEP y estandarizarla en una base de datos.
