@@ -6,17 +6,14 @@
     ---------------------------------------------
 */
 
-
-
-
 // ----------------------------------------------- //
-const cw = require('crawler');
+const cw = require("crawler");
 
-const settings = require('./settings.json');
+const settings = require("./settings.json");
 
-const BotKeywords = require('./lib/botKeywords.js');
-const BotCodes = require('./lib/botCodes.js');
-const BotUsers = require('./lib/botUsers.js');
+const BotKeywords = require("./lib/botKeywords.js");
+const BotCodes = require("./lib/botCodes.js");
+const BotUsers = require("./lib/botUsers.js");
 
 const name = settings["name"];
 const path_keywords = settings["file_keywords"];
@@ -33,20 +30,23 @@ const key_code = settings["url_key_code"];
 
 // ----------------------------------------------- //
 
-
-
-
-
 // ----------------------------------------------- //
-console.log('\033[2J');
+console.log("\033[2J");
 console.log("Crawler Init => " + name);
 console.log(" ");
+
+var MongoClient = require("mongodb").MongoClient;
+var url = "mongodb://localhost:27017/mmdb";
+MongoClient.connect(
+  url,
+  function(err, db) {
+    if (err) throw err;
+    console.log("Database created!");
+    db.close();
+  }
+);
+
 // ----------------------------------------------- //
-
-
-
-
-
 
 // ----------------------------------------------- //
 /*
@@ -79,6 +79,7 @@ botCodes.run();
 
 */
 // ----------------------------------------------- //
+/*
 var botUsers = new BotUsers();
 botUsers.setMode("new");
 
@@ -88,3 +89,4 @@ botUsers.setBase(base_code);
 botUsers.setQuery(query_code);
 botUsers.setKey(key_code);
 botUsers.run();
+*/
