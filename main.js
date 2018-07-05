@@ -35,14 +35,35 @@ console.log("\033[2J");
 console.log("Crawler Init => " + name);
 console.log(" ");
 
+// ---- Create Collection ---- //
 var MongoClient = require("mongodb").MongoClient;
-var url = "mongodb://localhost:27017/mmdb";
+var url = "mongodb://localhost:27017/";
+
+MongoClient.connect(
+  url,
+  { useNewUrlParser: true },
+  function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("mydb2");
+    var myobj = { name: "Company Inc", address: "Highway 37" };
+    dbo.collection("customers").insertOne(myobj, function(err, res) {
+      if (err) throw err;
+      console.log("1 document inserted");
+      db.close();
+    });
+  }
+);
+
 MongoClient.connect(
   url,
   function(err, db) {
     if (err) throw err;
-    console.log("Database created!");
-    db.close();
+    var dbo = db.db("mydb2");
+    dbo.collection("customers").findOne({}, function(err, result) {
+      if (err) throw err;
+      console.log(result.name);
+      db.close();
+    });
   }
 );
 
@@ -79,14 +100,14 @@ botCodes.run();
 
 */
 // ----------------------------------------------- //
-/*
-var botUsers = new BotUsers();
-botUsers.setMode("new");
 
+/* var botUsers = new BotUsers();
+botUsers.setMode("new");
+botUsers.setMongoDB(MongoClient);
 botUsers.setCodesDatabase(path_codes);
 botUsers.setDatabase(path_users);
 botUsers.setBase(base_code);
 botUsers.setQuery(query_code);
 botUsers.setKey(key_code);
 botUsers.run();
-*/
+ */
